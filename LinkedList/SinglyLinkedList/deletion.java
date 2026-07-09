@@ -53,19 +53,19 @@ public class deletion {
         if (head == null) {
             return;
         }
-        if(position==0){
+        if (position == 0) {
             deleteatbeg();
             return;
         }
-        if(position==size-1){
+        if (position == size - 1) {
             deleteatend();
             return;
         }
-        node temp=head;
-        for(int i=0;i<position;i++){
-            temp=temp.next;
+        node temp = head;
+        for (int i = 0; i < position; i++) {
+            temp = temp.next;
         }
-        temp.next=temp.next.next;
+        temp.next = temp.next.next;
         size--;
     }
 
@@ -81,7 +81,6 @@ public class deletion {
     class node {
         int value;
         node next;
-
         node(int value) {
             this.value = value;
         }
