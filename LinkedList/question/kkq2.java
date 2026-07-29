@@ -1,10 +1,10 @@
 package LinkedList.question;
-public class kk12 {
+public class kkq2 {
     node head;
     node tail;
     int size;
 
-    public kk12() {
+    public kkq2() {
         this.size = 0;
     }
 
@@ -57,7 +57,7 @@ public class kk12 {
     }
 
     public static void main(String[] args) {
-        kk12 ll = new kk12();
+        kkq2 ll = new kkq2();
         ll.insert(1);
         ll.insert(2);
         ll.insert(2);
