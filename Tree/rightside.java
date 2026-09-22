@@ -1,5 +1,3 @@
-//lc question 107
-
 package Tree;
 
 import java.util.ArrayList;
@@ -7,10 +5,12 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Queue;
 
-public class reversebfs {
+public class rightside {
 
     public static void main(String[] args) {
-        reversebfs tree = new reversebfs();
+
+        rightside tree = new rightside();
+
         TreeNode root = new TreeNode(1);
 
         root.left = new TreeNode(2);
@@ -22,12 +22,13 @@ public class reversebfs {
         root.right.left = new TreeNode(6);
         root.right.right = new TreeNode(7);
 
-        List<List<Integer>> result = tree.levelorder(root);
+        List<Integer> result = tree.rightSideView(root);
 
         System.out.println(result);
     }
 
     public static class TreeNode {
+
         int val;
         TreeNode left;
         TreeNode right;
@@ -37,20 +38,20 @@ public class reversebfs {
         }
     }
 
-    public List<List<Integer>> levelorder(TreeNode root) {
-        List<List<Integer>> result = new ArrayList<>();
+    public List<Integer> rightSideView(TreeNode root) {
+        List<Integer> result = new ArrayList<>();
         if (root == null) {
             return result;
         }
         Queue<TreeNode> queue = new LinkedList<>();
         queue.offer(root);
-
         while (!queue.isEmpty()) {
             int levelsize = queue.size();
-            List<Integer> currentLevel = new ArrayList<>(levelsize);
             for (int i = 0; i < levelsize; i++) {
                 TreeNode currNode = queue.poll();
-                currentLevel.add(currNode.val);
+                if (i == levelsize - 1) {
+                    result.add(currNode.val);
+                }
                 if (currNode.left != null) {
                     queue.offer(currNode.left);
                 }
@@ -58,7 +59,6 @@ public class reversebfs {
                     queue.offer(currNode.right);
                 }
             }
-            result.add(0,currentLevel);  //here currentlevel is the level i am processing right now and here the current level is the last level so we simply means that put the lastlevel at 0th index
         }
         return result;
     }
