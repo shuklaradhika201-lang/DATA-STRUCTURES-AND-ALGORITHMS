@@ -5,11 +5,11 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Queue;
 
-public class rightside {
+public class leftside{
 
     public static void main(String[] args) {
 
-        rightside tree = new rightside();
+        leftside tree = new leftside();
 
         TreeNode root = new TreeNode(1);
 
@@ -39,27 +39,33 @@ public class rightside {
     }
 
     public List<Integer> rightSideView(TreeNode root) {
-        List<Integer> result = new ArrayList<>();
-        if (root == null) {
+        List<Integer> result=new ArrayList<>();
+        if(root==null){
             return result;
         }
-        Queue<TreeNode> queue = new LinkedList<>();
+
+        Queue<TreeNode> queue =new LinkedList<>();
         queue.offer(root);
-        while (!queue.isEmpty()) {
-            int levelsize = queue.size();
-            for (int i = 0; i < levelsize; i++) {
-                TreeNode currNode = queue.poll();
-                if (i == levelsize-1) {
-                    result.add(currNode.val);  //this is the condition which will check for the right side view 
+
+        while(!queue.isEmpty()){
+            int levelsize=queue.size();
+            for(int i=0;i<levelsize;i++){
+                TreeNode currnode=queue.poll();
+                if(i==0){
+                    result.add(currnode.val);
                 }
-                if (currNode.left != null) {
-                    queue.offer(currNode.left);
+                if(currnode.left!=null){
+                    queue.offer(currnode.left);
                 }
-                if (currNode.right != null) {
-                    queue.offer(currNode.right);
+                if(currnode.right != null){
+                    queue.offer(currnode.right);
                 }
             }
         }
         return result;
     }
 }
+
+
+//we can print left and right side view of the tree by i==0 || i==levelsize-1
+// amd we can also print the middle elements by !(i==0 || i==levelsize-1)
