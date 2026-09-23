@@ -13,11 +13,13 @@ public class questions {
         System.out.println(sum(3));
         System.out.println(factorial(3));
         System.out.println(power(2,5));
-        System.out.println(reverse(1234 , 0));
+        System.out.println(reverse(1234 ));
         System.out.println(sum1(123));
         System.out.println(count(1234));
         System.out.println(product(1234));
-        System.out.println(palindromic(121));
+        System.out.println(max(1234));
+        System.out.println(min(1234));
+        System.out.println(count1(12223334 , 2));
     }
 
     // print numbers 1 to n
@@ -93,13 +95,14 @@ public class questions {
     }
 
     //reverse a number
-    public static int reverse(int n , int rev){
+    static  int rev=0;
+    public static int reverse(int n){
         if(n==0){
             return rev;
         }
         int digit=n%10;
         rev=rev*10 + digit;
-        return reverse(n/10 , reverse);
+        return reverse(n/10);
     }
 
     //sum of digits in a number
@@ -134,10 +137,45 @@ public class questions {
         return product(n/10);
     }
 
-    //check number is palindromic
-    static int reverse=0;
-    public static boolean palindromic(int n){
-        int reversed=reverse(n , 0);
-        return n==reversed;
+    //max in the number
+    static int max=Integer.MIN_VALUE;
+    public static int max(int n){
+        if(n==0){
+            return max;
+        }
+        int digit=n%10;
+        if(digit>max){
+            max=digit;
+        }
+
+        return max(n/10);
+    }
+
+    //min in the number
+    static int min=Integer.MAX_VALUE;
+    public static int min(int n){
+        if(n==0){
+            return min;
+        }
+        int digit=n%10;
+        if(digit<min){
+            min=digit;
+        }
+
+        return min(n/10);
+    }
+
+    //occurence of a given digit in a number
+    static int count1=0;
+    public static int count1(int n , int key){
+        if(n==0){
+            return count1;
+        }
+        int digit=n%10;
+        if(digit==key){
+            count1++;
+        }
+
+        return count1(n/10, key);
     }
 }
