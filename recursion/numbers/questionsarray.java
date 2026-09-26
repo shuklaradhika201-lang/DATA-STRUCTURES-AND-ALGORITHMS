@@ -2,7 +2,7 @@ package recursion.numbers;
 
 public class questionsarray {
     public static void main(String[] args) {
-        int[] arr = { 1, 2, 3, 4, 5 };
+        int[] arr = { 1, 2, 3, 4, 5 , 3};
         print(arr, 0);
         System.out.println();
         printr(arr, arr.length - 1);
@@ -11,6 +11,11 @@ public class questionsarray {
         System.out.println(max(arr, 0));
         System.out.println(sorted(arr, 0));
         System.out.println(search(arr,0,3));
+        System.out.println(first(arr, 0,2));
+        int j=arr.length-1;
+        System.out.println(last(arr, j, 3));
+        System.out.println(count2(arr,0,3));
+        all(arr, 0, 3);
     }
 
     // print array
@@ -89,5 +94,56 @@ public class questionsarray {
         }
 
         return search(arr, i+1, key);
+    }
+
+    //first occurence
+    public static int first(int[] arr , int i , int key){
+        if(i==arr.length){
+            return first(arr, i, key);
+        }
+
+        if(arr[i]==key){
+            return i;
+        }
+        return first(arr, i+1, key);
+    }
+
+    //last occurence
+    public static int last(int[] arr , int i , int key){
+        if(i==0){
+            return last(arr,i,key);
+        }
+        if(arr[i]==key){
+            return i;
+        }
+        return last(arr, i-1, key);
+    }
+
+    //count occurence of elements 
+    static int count2=0;
+    public static int count2(int[] arr , int i , int key ){
+        if(i==arr.length){
+            return count2;
+        }
+        if(arr[i]==key){
+            count2++;
+        }
+        return count2(arr, i+1, key);
+    }
+
+    //all occurence of an element
+    public static void all(int[] arr , int i, int key){
+        if(i==arr.length){
+            return;
+        }
+        if(arr[i]==key){
+            System.out.print(i + " ");
+        }
+        all(arr, i+1, key);
+    }
+
+    //reverse an array
+    public static void reverse(int[] arr , int i , int key){
+        
     }
 }
