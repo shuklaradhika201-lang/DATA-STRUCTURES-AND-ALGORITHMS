@@ -1,9 +1,6 @@
 //lc 993
 //Two nodes are cousins if they are at the same level AND they are NOT siblings
-
-
 //Find the two nodes → check they are at the same level → check they don't have the same parent → cousins.
-
 package Tree;
 
 public class cousionbt {
