@@ -1,127 +1,144 @@
-package Tree;
+// package Tree;
 
-import java.util.*;
+// import java.util.*;
 
-public class huffmancoding {
+// public class huffmancoding {
 
-    HashMap<Character, String> encoder;
-    HashMap<String, Character> decoder;
+//     HashMap<Character, String> encoder;
+//     HashMap<String, Character> decoder;
 
-    private class Node implements Comparable<Node> {
-        Character data;
-        int cost;
-        Node left;
-        Node right;
+//     private class Node implements Comparable<Node> {
 
-        public Node(Character data, int cost) {
-            this.data = data;
-            this.cost = cost;
-            this.left = null;
-            this.right = null;
-        }
+//         Character data;
+//         int cost;
 
-        @Override
-        public int compareTo(Node other) {
-            return this.cost - other.cost;
-        }
-    }
+//         Node left;
+//         Node right;
 
-    public void huffmancoder(String feeder) throws Exception {
+//         public Node(Character data, int cost) {
+//             this.data = data;
+//             this.cost = cost;
+//             this.left = null;
+//             this.right = null;
+//         }
 
-        HashMap<Character, Integer> fmp = new HashMap<>();
+//         @Override
+//         public int compareTo(Node other) {
+//             return this.cost - other.cost;
+//         }
+//     }
 
-        // Calculate frequency
-        for (int i = 0; i < feeder.length(); i++) {
-            char cc = feeder.charAt(i);
+//     public void huffmancoder(String feeder) throws Exception {
 
-            if (fmp.containsKey(cc)) {
-                int ov = fmp.get(cc);
-                ov += 1;
-                fmp.put(cc, ov);
-            } else {
-                fmp.put(cc, 1);
-            }
-        }
+//         HashMap<Character, Integer> fmp = new HashMap<>();
 
-        Heap<Node> minHeap = new Heap<>();
+//         // Calculate frequency
+//         for (int i = 0; i < feeder.length(); i++) {
 
-        Set<Map.Entry<Character, Integer>> entrySet = fmp.entrySet();
+//             char cc = feeder.charAt(i);
 
-        for (Map.Entry<Character, Integer> entry : entrySet) {
-            Node node = new Node(entry.getKey(), entry.getValue());
-            minHeap.insert(node);
-        }
+//             if (fmp.containsKey(cc)) {
 
-        // Build Huffman Tree
-        while (minHeap.size() != 1) {
+//                 int ov = fmp.get(cc);
+//                 ov += 1;
 
-            Node first = minHeap.remove();
-            Node second = minHeap.remove();
+//                 fmp.put(cc, ov);
 
-            Node newNode = new Node('\0', first.cost + second.cost);
+//             } else {
 
-            newNode.left = first;
-            newNode.right = second;
+//                 fmp.put(cc, 1);
+//             }
+//         }
 
-            minHeap.insert(newNode);
-        }
+//         Heap<Node> minHeap = new Heap<>();
 
-        Node ft = minHeap.remove();
+//         Set<Map.Entry<Character, Integer>> entrySet = fmp.entrySet();
 
-        this.encoder = new HashMap<>();
-        this.decoder = new HashMap<>();
+//         for (Map.Entry<Character, Integer> entry : entrySet) {
 
-        this.intitEncoderDecoder(ft, "");
-    }
+//             Node node = new Node(
+//                     entry.getKey(),
+//                     entry.getValue()
+//             );
 
-    private void intitEncoderDecoder(Node node, String osf) {
+//             minHeap.insert(node);
+//         }
 
-        if (node == null) {
-            return;
-        }
+//         // Build Huffman Tree
+//         while (minHeap.size() != 1) {
 
-        // Leaf node
-        if (node.left == null && node.right == null) {
+//             Node first = minHeap.remove();
+//             Node second = minHeap.remove();
 
-            // Character -> Code
-            this.encoder.put(node.data, osf);
+//             Node newNode = new Node(
+//                     '\0',
+//                     first.cost + second.cost
+//             );
 
-            // Code -> Character
-            this.decoder.put(osf, node.data);
+//             newNode.left = first;
+//             newNode.right = second;
 
-            return;
-        }
+//             minHeap.insert(newNode);
+//         }
 
-        intitEncoderDecoder(node.left, osf + "0");
-        intitEncoderDecoder(node.right, osf + "1");
-    }
+//         Node ft = minHeap.remove();
 
-    public String encode(String source) {
+//         this.encoder = new HashMap<>();
+//         this.decoder = new HashMap<>();
 
-        String ans = "";
+//         this.intitEncoderDecoder(ft, "");
+//     }
 
-        for (int i = 0; i < source.length(); i++) {
-            ans = ans + encoder.get(source.charAt(i));
-        }
+//     private void intitEncoderDecoder(Node node, String osf) {
 
-        return ans;
-    }
+//         if (node == null) {
+//             return;
+//         }
 
-    public String decode(String codedstring) {
+//         // Leaf node
+//         if (node.left == null && node.right == null) {
 
-        String key = "";
-        String ans = "";
+//             // Character -> Code
+//             this.encoder.put(node.data, osf);
 
-        for (int i = 0; i < codedstring.length(); i++) {
+//             // Code -> Character
+//             this.decoder.put(osf, node.data);
 
-            key = key + codedstring.charAt(i);
+//             return;
+//         }
 
-            if (decoder.containsKey(key)) {
-                ans = ans + decoder.get(key);
-                key = "";
-            }
-        }
+//         intitEncoderDecoder(node.left, osf + "0");
+//         intitEncoderDecoder(node.right, osf + "1");
+//     }
 
-        return ans;
-    }
-}
+//     public String encode(String source) {
+
+//         String ans = "";
+
+//         for (int i = 0; i < source.length(); i++) {
+
+//             ans = ans + encoder.get(source.charAt(i));
+//         }
+
+//         return ans;
+//     }
+
+//     public String decode(String codedstring) {
+
+//         String key = "";
+//         String ans = "";
+
+//         for (int i = 0; i < codedstring.length(); i++) {
+
+//             key = key + codedstring.charAt(i);
+
+//             if (decoder.containsKey(key)) {
+
+//                 ans = ans + decoder.get(key);
+//                 key = "";
+//             }
+//         }
+
+//         return ans;
+//     }
+// }

@@ -5,17 +5,11 @@ import java.util.Scanner;
 class binarytree {  //this is main class it can also be written as public class binarytree both are same 
 
     private static class node { //here we have a class inside class which is called nested class 
-
         //why we need a nested class because bt are made up of nodes and each node stores 3 value root left child and right child 
-
         //it is declared as private because it should only be acessible in binarytree
-
         //here the binarytree is handling the node internally which represents encapsulation
-
         //it is static because a node object does not need a specific binarytree object to exist
-
         //Since a node is basically just a data structure used by the tree, making it static is convenient.
-
         private int value;
         node left;
         node right;
