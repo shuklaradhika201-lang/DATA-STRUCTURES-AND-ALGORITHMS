@@ -26,7 +26,7 @@ public class question6 {
             return;
         }
 
-        add.add(String.valueOf(s.charAt(i)));
+        add.add(String.valueOf(a.charAt(i)));
         sub(i+1, a, result, add);
 
         add.remove(add.size()-1);
