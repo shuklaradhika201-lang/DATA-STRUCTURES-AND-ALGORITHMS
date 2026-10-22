@@ -28,8 +28,9 @@ public class circularqueue {
         if (isFull()) {
             return false;
         }
-        data[end++] = item;
-        end = end % data.length;
+        data[end++] = item;  // this is post increment here first we update the value and then will increment the end
+        end = end % data.length; // here this is the concept of the circular queue if end is a index which doesnt exist then end will come to the starting index
+        //suppose here the index is at 4 after increment it becomes 5 and 5 doesnt exist so it will come back to zero
         size++;
         return true;
     }
@@ -40,7 +41,7 @@ public class circularqueue {
         }
 
         int removed = data[front];
-        front = (front + 1) % data.length;
+        front = (front + 1) % data.length; //move front to the next index 
         size--;
         return removed;
     }

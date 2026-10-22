@@ -2,15 +2,15 @@ package stackandqueue;
 
 public class dynamicstack extends stackcustom{
     public dynamicstack(){
-        super();
+        super(); //this super keyword is used to call the constructor of the parent class which is unparametrized 
     }
 
     public dynamicstack(int size){
-        super(size);
+        super(size);  //this is used for calling the parametrized construtor of parent class
     }
 
     @Override 
-    public boolean push(int item){
+    public boolean push(int item){ // we override the parent class push method in order to increase the size of the array at the time the array is full
         if(isFull()){
             int[] temp=new int[data.length*2];
             for(int i=0;i<data.length;i++){
